@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>시스템 파크 — PR 리뷰로 배우는 백엔드 6장면</title>
+<meta name="description" content="카카오테크캠퍼스 4기 학생 PR의 실제 질문과 멘토 답변에서 나온 6개 개념을, 차량이 실제 시뮬레이션을 싣고 달리는 등각투영 지도로 배운다." />
+<link rel="stylesheet" href="css/styles.css" />
+<style>
+  body { overflow: auto; background: #eef0ea; }
+  .hub {
+    max-width: 880px; margin: 0 auto; padding: 96px 20px 60px;
+  }
+  .hub h1 { font-size: 30px; margin-bottom: 6px; }
+  .hub > p { color: #6a6458; margin-bottom: 8px; line-height: 1.6; }
+  .hub .note { font-size: 12.5px; color: #8a8272; margin-bottom: 28px; }
+  .maps { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .map-card {
+    display: block; text-decoration: none; color: inherit;
+    background: #fffdf7; border: 1px solid rgba(110,98,80,.3); border-radius: 12px;
+    padding: 16px 16px 14px; transition: transform .12s, border-color .12s;
+  }
+  .map-card:hover { transform: translateY(-2px); border-color: #a85a44; }
+  .map-card .no { font: 600 11px ui-monospace, Menlo, monospace; color: #a85a44; }
+  .map-card h2 { font-size: 17px; margin: 4px 0 6px; }
+  .map-card p { font-size: 12.5px; color: #6a6458; line-height: 1.55; }
+  .map-card .q { margin-top: 8px; font-size: 12px; color: #4a4540; background: rgba(194,145,60,.1);
+    border-left: 3px solid #c2913c; padding: 6px 8px; border-radius: 0 6px 6px 0; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo" aria-hidden="true"></div>
+    <div class="brand-text">
+      <h1>시스템 파크</h1>
+      <p>PR 리뷰로 배우는 백엔드 — 실제 시뮬레이션을 실은 6장의 지도</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <a class="ghost btn-home" href="https://bgc8214.github.io/ktc4-review-learning/" target="_blank" rel="noopener noreferrer">리뷰 학습 노트</a>
+  </div>
+</header>
+
+<main class="hub">
+  <h1>여섯 장의 지도</h1>
+  <p>카카오테크캠퍼스 4기 학생 PR에 실제로 달린 질문과 멘토 답변에서 여섯 개 개념을 골랐다.
+     지도마다 차량 한 대가 달리고, 정류장마다 <b>모델이 실제 한 단계를 계산</b>하며,
+     처음 가는 구역에서는 글을 읽을 만큼 멈춘다. 「비교 장면」을 바꾸면 같은 길에서
+     규칙 하나가 달라졌을 때 결과가 어떻게 갈라지는지 볼 수 있다 —
+     대부분의 지도는 <b>사고 장면이 기본값</b>이다. 먼저 부서지는 걸 보고, 고쳐 보라.</p>
+  <p class="note">패널의 모든 숫자는 미리 구운 결과표가 아니라 <code>topics/*.model.js</code>의
+     순수 함수가 낸 값이다(node로 단독 검증). 실제 Redis·DB·GitHub API·LLM은 호출하지 않는다.</p>
+
+  <div class="maps">
+    <a class="map-card" href="./auth.html">
+      <span class="no">01 · 경북 1팀 PR #4</span>
+      <h2>인증과 인가의 도시</h2>
+      <p>세션·쿠키·소유권 검사. 검문소에서 길이 갈라진다 — 거절된 요청은 창고를 아예 지나지 않는다.</p>
+      <div class="q">로그인한 A가 B의 카드 UUID를 알면, 열리는가?</div>
+    </a>
+    <a class="map-card" href="./atomic.html">
+      <span class="no">02 · 강원 3팀 PR #59</span>
+      <h2>동시성 항구</h2>
+      <p>GET+DEL 사이의 틈에 다른 요청이 끼어든다. GETDEL은 그 틈 자체를 없앤다.</p>
+      <div class="q">하나의 Refresh Token을 두 요청이 소비하면?</div>
+    </a>
+    <a class="map-card" href="./transaction.html">
+      <span class="no">03 · 강원 3팀 PR #59</span>
+      <h2>트랜잭션 은행</h2>
+      <p>출금 후 입금이 실패한다. 한 트랜잭션이면 합계 200이 지켜지고, 따로 커밋했으면 170이 된다.</p>
+      <div class="q">동전 30개는 어디로 갔을까?</div>
+    </a>
+    <a class="map-card" href="./polling.html">
+      <span class="no">04 · 경북 1팀 PR #4</span>
+      <h2>비동기 작업장</h2>
+      <p>202는 접수다. 새로고침은 JS 메모리만 지우고, 서버 기둥은 계속 차오른다.</p>
+      <div class="q">분석 도중 F5를 누르면 작업은 죽는가?</div>
+    </a>
+    <a class="map-card" href="./ports.html">
+      <span class="no">05 · 경북 1팀 PR #4</span>
+      <h2>어댑터 공방</h2>
+      <p>같은 read(repo) 호출이 GitHub 장치와 테스트 대역을 한 바퀴씩 돈다. 업무 코드 변경 0줄.</p>
+      <div class="q">구현체를 바꾸면 업무는 무엇을 알게 되는가?</div>
+    </a>
+    <a class="map-card" href="./evidence.html">
+      <span class="no">06 · 경북 1팀 PR #4</span>
+      <h2>AI 근거 공장</h2>
+      <p>모델의 SHA 주장을 실제 기록과 대조한다. 없는 SHA도, "있지만 주장이 다른" SHA도 출고되지 못한다.</p>
+      <div class="q">그럴듯한 초안은 어디서 멈추는가?</div>
+    </a>
+  </div>
+</main>
+
+</body>
+</html>
