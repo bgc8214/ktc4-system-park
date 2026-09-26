@@ -20,7 +20,7 @@ python3 -m http.server 8000    # → http://localhost:8000/
 | 비교 장면 | 장면별 사전 스크립트 | 같은 모델을 **다른 규칙으로 재계산** |
 | 검증 | 별도 experiments 테스트 | 모델을 node로 단독 실행 + 헤드리스 스모크 |
 
-## 여섯 지도
+## 여덟 지도
 
 | 파일 | 주제 | 비교 장면 | 출처 리뷰 |
 |---|---|---|---|
@@ -30,6 +30,8 @@ python3 -m http.server 8000    # → http://localhost:8000/
 | `polling.html` | 202·jobId·폴링 복구 | 메모리에만 vs 목록 복원 | 경북 1팀 #4 |
 | `ports.html` | 포트·어댑터 | GitHub 먼저 vs 대역 먼저 | 경북 1팀 #4 |
 | `evidence.html` | LLM 초안·SHA 검증 | 없는 SHA / 주장 불일치 / 정상 | 경북 1팀 #4 |
+| `retry.html` | 멱등 키 재시도 판단 | 무조건 새 키 vs 모를 때만 같은 키 | 경북 1팀 #57 |
+| `declared.html` | 설정 드리프트·부작용 검증 | 선언을 믿기 vs 부작용 확인 | 경북 1팀 #19·#57 |
 
 대부분 **사고 장면이 기본값**이다 — 먼저 부서지는 걸 보고, 비교 장면을 바꿔 고친다.
 
@@ -37,7 +39,7 @@ python3 -m http.server 8000    # → http://localhost:8000/
 
 - **진짜 계산**: 패널의 「현재 상태」와 지도 위 동적 값(드럼 개수·기둥 눈금·진열대 색·통 채움)은
   전부 `topics/*.model.js`의 순수 함수가 정류장에서 실행되어 나온 것이다.
-  여섯 모델 모두 node로 단독 실행해 검증했다 (`node -e "require('./topics/auth.model.js'); ..."`).
+  여덟 모델 모두 node로 단독 실행해 검증했다 (`node -e "require('./topics/auth.model.js'); ..."`).
 - **비유**: 시간·차량·건물·상자. 실제 Redis·DB·GitHub API·LLM은 호출하지 않는다.
 - **주제별 가정과 한계**: 각 페이지의 「정확성」 모달과 `topics/*.model.js` 머리 주석에 있다.
 - **검토 기록**: 원 레포의 `knowledge.md`에서 공식 문서로 핵심 규칙을 교차 확인했다.
